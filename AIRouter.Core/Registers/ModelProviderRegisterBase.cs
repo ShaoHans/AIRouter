@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.SemanticKernel;
 
-namespace AIRouter.Core;
+namespace AIRouter.Core.Registers;
 
 internal abstract class ModelProviderRegisterBase
 {
@@ -13,12 +13,12 @@ internal abstract class ModelProviderRegisterBase
         services.AddKeyedTransient(provider.Code, (sp, key) => BuildKernel(sp, provider));
     }
 
-    protected abstract void RegisterChatCompletionService(
+    protected abstract void AddChatCompletionService(
         IKernelBuilder builder,
         ModelProvider provider
     );
 
-    protected abstract void RegisterTextEmbeddingService(
+    protected abstract void AddTextEmbeddingService(
         IKernelBuilder builder,
         ModelProvider provider
     );
@@ -27,8 +27,8 @@ internal abstract class ModelProviderRegisterBase
     {
         var builder = Kernel.CreateBuilder();
 
-        RegisterChatCompletionService(builder, provider);
-        RegisterTextEmbeddingService(builder, provider);
+        AddChatCompletionService(builder, provider);
+        AddTextEmbeddingService(builder, provider);
 
         return builder.Build();
     }

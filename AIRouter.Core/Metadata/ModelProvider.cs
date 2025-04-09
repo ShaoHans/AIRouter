@@ -19,9 +19,19 @@ internal class ModelProvider
         return Services.FirstOrDefault(x => x.Type == ModelServiceType.ChatCompletion);
     }
 
+    public string? GetChatCompletionModelId()
+    {
+        return GetChatCompletionService()?.ModelId;
+    }
+
     public ModelProviderService? GetTextEmbeddingService()
     {
         return Services.FirstOrDefault(x => x.Type == ModelServiceType.TextEmbedding);
+    }
+
+    public string? GetTextEmbeddingModelId()
+    {
+        return GetTextEmbeddingService()?.ModelId;
     }
 }
 
