@@ -1,4 +1,4 @@
-﻿namespace AIRouter.Core;
+﻿namespace AIRouter.Core.Metadata;
 
 internal class ModelProvider
 {

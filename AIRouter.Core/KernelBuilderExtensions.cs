@@ -1,5 +1,5 @@
 ﻿using System.ClientModel;
-using AIRouter.Core;
+using AIRouter.Core.Metadata;
 using AIRouter.Core.Ollama;
 using Microsoft.Extensions.Configuration;
 using OpenAI;

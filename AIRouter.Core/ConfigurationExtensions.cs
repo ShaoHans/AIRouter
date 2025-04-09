@@ -1,4 +1,4 @@
-﻿using AIRouter.Core;
+﻿using AIRouter.Core.Metadata;
 
 namespace Microsoft.Extensions.Configuration;
 

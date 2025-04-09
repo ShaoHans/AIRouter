@@ -7,6 +7,6 @@ var configuration = new ConfigurationBuilder()
     .AddUserSecrets<Program>()
     .Build();
 
-var kernel = Kernel.CreateBuilder().AddChatCompletion(configuration, "ollama").Build();
+var kernel = Kernel.CreateBuilder().AddChatCompletion(configuration, "zhipu").Build();
 var response = await kernel.InvokePromptAsync("你是谁？");
 Console.WriteLine(response.ToString());
