@@ -1,7 +1,8 @@
-﻿using AIRouter.Core;
+﻿using System.ClientModel;
+using AIRouter.Core;
+using AIRouter.Core.Ollama;
 using Microsoft.Extensions.Configuration;
 using OpenAI;
-using System.ClientModel;
 
 namespace Microsoft.SemanticKernel;
 
@@ -53,7 +54,13 @@ public static class KernelBuilderExtensions
                     endpoint: provider.Endpoint!
                 );
                 break;
-            case ModelProviderType.Ollam:
+            case ModelProviderType.Ollama:
+                builder.AddOpenAIChatCompletion(
+                    modelId,
+                    provider.ApiKey,
+                    httpClient: new HttpClient(new OllamaHttpClientHandler(provider.Endpoint!))
+                );
+                break;
             case ModelProviderType.HuggingFace:
             case ModelProviderType.Google:
             case ModelProviderType.Onnx:

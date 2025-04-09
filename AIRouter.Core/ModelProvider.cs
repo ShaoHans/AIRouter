@@ -8,7 +8,7 @@ internal class ModelProvider
 
     public ModelProviderType Type { get; set; }
 
-    public string ApiKey { get; set; } = default!;
+    public string ApiKey { get; set; } = string.Empty;
 
     public string? Endpoint { get; set; }
 

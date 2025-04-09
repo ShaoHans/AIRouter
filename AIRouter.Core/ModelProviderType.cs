@@ -5,7 +5,7 @@ public enum ModelProviderType
     OpenAI,
     OpenAI_Compatible,
     AzureOpenAI,
-    Ollam,
+    Ollama,
     HuggingFace,
     Google,
     Onnx,
