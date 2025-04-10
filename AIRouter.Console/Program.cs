@@ -1,14 +1,24 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using AIRouter.Console.Templates;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
+using Serilog;
+using Serilog.Core;
 
 var configuration = new ConfigurationBuilder()
     .SetBasePath(AppContext.BaseDirectory)
     .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
     .AddUserSecrets<Program>()
     .Build();
+
+var logger = new LoggerConfiguration()
+                .MinimumLevel.Information()
+                //.MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+                .ReadFrom.Configuration(configuration)
+                .WriteTo.Console()
+                .CreateLogger();
 
 //var kernel = Kernel.CreateBuilder().AddChatCompletion(configuration, "ollama").Build();
 
@@ -18,6 +28,9 @@ services.AddSerilog(configuration);
 var sp = services.BuildServiceProvider();
 var kernel = sp.GetRequiredKeyedService<Kernel>("zhipu");
 
+await A01内联提示词.TestAsync(kernel);
+
+return;
 var chatCompletionService = kernel.Services.GetRequiredService<IChatCompletionService>();
 OpenAIPromptExecutionSettings openAIPromptExecutionSettings = new() { };
 var chatMessages = new ChatHistory(
@@ -26,7 +39,6 @@ var chatMessages = new ChatHistory(
     如果用户未提供足够信息，你将持续提问直至获得完成任务所需的全部内容。
     """
 );
-
 while (true)
 {
     Console.Write("User > ");
