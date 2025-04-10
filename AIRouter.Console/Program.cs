@@ -12,6 +12,7 @@ var configuration = new ConfigurationBuilder()
 
 var services = new ServiceCollection();
 services.RegisterKernels(configuration);
+services.AddSerilog(configuration);
 var sp = services.BuildServiceProvider();
 var kernel = sp.GetRequiredKeyedService<Kernel>("zhipu");
 
