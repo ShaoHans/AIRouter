@@ -42,16 +42,16 @@ public static class ServiceCollectionEextensions
         IConfiguration configuration
     )
     {
-        //var configuration = services.GetConfiguration();
-        var logger = new LoggerConfiguration()
-            .MinimumLevel.Information()
-            //.MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
-            .ReadFrom.Configuration(configuration)
-            .CreateLogger();
-
         services.AddLogging(builder =>
         {
             builder.ClearProviders();
+
+            //var configuration = services.GetConfiguration();
+            var logger = new LoggerConfiguration()
+                .MinimumLevel.Information()
+                //.MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+                .ReadFrom.Configuration(configuration)
+                .CreateLogger();
             builder.AddSerilog(logger);
         });
         return services;
