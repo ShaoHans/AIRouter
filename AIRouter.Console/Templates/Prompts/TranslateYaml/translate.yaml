@@ -1,0 +1,15 @@
+﻿name: Translate
+template: |
+  将以下中文翻译成英文。
+  {{$content}} 
+template_format: semantic-kernel
+description: 将中文翻译成英文
+input_variables:
+  - name: content
+    description: 被翻译的中文内容
+    is_required: true
+output_variable:
+  description: 翻译后的英文内容
+execution_settings:
+  default:
+    temperature: 0.6
