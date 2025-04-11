@@ -28,7 +28,8 @@ services.AddSerilog(configuration);
 var sp = services.BuildServiceProvider();
 var kernel = sp.GetRequiredKeyedService<Kernel>("zhipu");
 
-await A01内联提示词.TestAsync(kernel);
+//await A01内联提示词.TestAsync(kernel);
+await A02文件模板提示词.TestAsync(kernel);
 
 return;
 var chatCompletionService = kernel.Services.GetRequiredService<IChatCompletionService>();
