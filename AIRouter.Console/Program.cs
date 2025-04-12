@@ -31,7 +31,8 @@ var kernel = sp.GetRequiredKeyedService<Kernel>("zhipu");
 //await A01内联提示词.TestAsync(kernel);
 //await A02文件模板提示词.TestTxtAsync(kernel);
 //await A02文件模板提示词.TestYamlAsync(kernel);
-await A03Handlebars模板提示词.TestAsync(kernel);
+//await A03Handlebars模板提示词.TestAsync(kernel);
+await A04Liquid模板提示词.TestAsync(kernel);
 
 return;
 var chatCompletionService = kernel.Services.GetRequiredService<IChatCompletionService>();
