@@ -1,24 +1,16 @@
-﻿using AIRouter.Console.Templates;
+﻿using AIRouter.Console.Plugins;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
 using Serilog;
-using Serilog.Core;
 
 var configuration = new ConfigurationBuilder()
     .SetBasePath(AppContext.BaseDirectory)
     .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
     .AddUserSecrets<Program>()
     .Build();
-
-var logger = new LoggerConfiguration()
-                .MinimumLevel.Information()
-                //.MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
-                .ReadFrom.Configuration(configuration)
-                .WriteTo.Console()
-                .CreateLogger();
 
 //var kernel = Kernel.CreateBuilder().AddChatCompletion(configuration, "ollama").Build();
 
@@ -28,11 +20,18 @@ services.AddSerilog(configuration);
 var sp = services.BuildServiceProvider();
 var kernel = sp.GetRequiredKeyedService<Kernel>("zhipu");
 
+#region 提示词
+
 //await A01内联提示词.TestAsync(kernel);
 //await A02文件模板提示词.TestTxtAsync(kernel);
 //await A02文件模板提示词.TestYamlAsync(kernel);
 //await A03Handlebars模板提示词.TestAsync(kernel);
-await A04Liquid模板提示词.TestAsync(kernel);
+//await A04Liquid模板提示词.TestAsync(kernel);
+
+#endregion
+
+//await B01自动调用插件方法.AutoInvokePluginMethodAsync(kernel);
+//await B01自动调用插件方法.AutoInvokeKernelFunctionsAsync(kernel);
 
 return;
 var chatCompletionService = kernel.Services.GetRequiredService<IChatCompletionService>();
