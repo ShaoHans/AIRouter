@@ -8,7 +8,7 @@ internal class B02手动调用插件方法
 {
     public static async Task TestAsync(Kernel kernel)
     {
-        kernel.Plugins.AddFromType<MathPlugin>();
+        kernel.Plugins.AddFromType<MyMathPlugin>();
         OpenAIPromptExecutionSettings openAIPromptExecutionSettings =
             new() { ToolCallBehavior = ToolCallBehavior.EnableKernelFunctions };
 

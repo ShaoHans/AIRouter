@@ -32,7 +32,8 @@ var kernel = sp.GetRequiredKeyedService<Kernel>("zhipu");
 
 //await B01自动调用插件方法.AutoInvokePluginMethodAsync(kernel);
 //await B01自动调用插件方法.AutoInvokeKernelFunctionsAsync(kernel);
-await B02手动调用插件方法.TestAsync(kernel);
+//await B02手动调用插件方法.TestAsync(kernel);
+await B03内置插件.TestAsync(kernel);
 
 return;
 var chatCompletionService = kernel.Services.GetRequiredService<IChatCompletionService>();

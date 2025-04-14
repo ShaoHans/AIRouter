@@ -8,7 +8,7 @@ internal class B01自动调用插件方法
 {
     public static async Task AutoInvokePluginMethodAsync(Kernel kernel)
     {
-        kernel.Plugins.AddFromType<MathPlugin>();
+        kernel.Plugins.AddFromType<MyMathPlugin>();
         var anwser = await kernel.InvokeAsync<int>(
             "MathPlugin",
             "Add",
@@ -33,7 +33,7 @@ internal class B01自动调用插件方法
     public static async Task AutoInvokeKernelFunctionsAsync(Kernel kernel)
     {
         kernel.Plugins.Clear();
-        kernel.Plugins.AddFromType<MathPlugin>();
+        kernel.Plugins.AddFromType<MyMathPlugin>();
 
         var openAIPromptExecutionSettings = new OpenAIPromptExecutionSettings
         {
