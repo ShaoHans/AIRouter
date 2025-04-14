@@ -1,4 +1,5 @@
-﻿using AIRouter.Console.Plugins;
+﻿using AIRouter.Console.Filters;
+using AIRouter.Console.Plugins;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.SemanticKernel;
@@ -37,7 +38,8 @@ var kernel = sp.GetRequiredKeyedService<Kernel>("zhipu");
 //await B04自动调用插件方法_FunctionChoiceBehavior.TestAsync(kernel);
 //await B04被动调用插件方法_FunctionChoiceBehavior.TestAsync(kernel);
 //await B05广播插件方法_FunctionChoiceBehavior.TestRequiredAsync(kernel);
-await B05广播插件方法_FunctionChoiceBehavior.TestNoneAsync(kernel);
+//await B05广播插件方法_FunctionChoiceBehavior.TestNoneAsync(kernel);
+await C01异常过滤器.TestAsync(kernel);
 
 return;
 var chatCompletionService = kernel.Services.GetRequiredService<IChatCompletionService>();

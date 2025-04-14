@@ -25,13 +25,13 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Templates\Prompts\TranslateYaml\translate.yaml">
+    <None Update="00Templates\Prompts\TranslateYaml\translate.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Templates\Prompts\Translate\config.json">
+    <None Update="00Templates\Prompts\Translate\config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Templates\Prompts\Translate\skprompt.txt">
+    <None Update="00Templates\Prompts\Translate\skprompt.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
