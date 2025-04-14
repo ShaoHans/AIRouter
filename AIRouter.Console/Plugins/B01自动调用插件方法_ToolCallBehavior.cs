@@ -4,7 +4,7 @@ using Microsoft.SemanticKernel.Connectors.OpenAI;
 
 namespace AIRouter.Console.Plugins;
 
-internal class B01自动调用插件方法
+internal class B01自动调用插件方法_ToolCallBehavior
 {
     public static async Task AutoInvokePluginMethodAsync(Kernel kernel)
     {
