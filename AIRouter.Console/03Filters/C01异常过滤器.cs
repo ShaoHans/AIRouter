@@ -9,6 +9,7 @@ internal class C01异常过滤器
 {
     public static async Task TestAsync(Kernel kernel)
     {
+        kernel.FunctionInvocationFilters.Clear();
         kernel.FunctionInvocationFilters.Add(new ExceptionHandleFilter());
         kernel.Plugins.AddFromType<MyMathPlugin>();
         var settings = new OpenAIPromptExecutionSettings

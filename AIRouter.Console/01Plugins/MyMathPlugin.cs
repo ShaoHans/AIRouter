@@ -32,4 +32,14 @@ internal class MyMathPlugin
         }
         return (double)a / b;
     }
+
+    [KernelFunction, Description("取模")]
+    public static int Mod([Description("第一个数")] int a, [Description("第二个数")] int b)
+    {
+        if (b == 0)
+        {
+            throw new DivideByZeroException("炸锅了！！！");
+        }
+        return a % b;
+    }
 }
