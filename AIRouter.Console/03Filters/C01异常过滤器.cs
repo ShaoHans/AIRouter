@@ -13,7 +13,7 @@ internal class C01异常过滤器
         kernel.FunctionInvocationFilters.Clear();
         kernel.FunctionInvocationFilters.Add(
             new ExceptionHandleFilter(
-                kernel.Services.GetRequiredService<ILoggerProvider>().CreateLogger(nameof(C01异常过滤器))
+                kernel.Services.GetRequiredService<ILoggerFactory>().CreateLogger<C01异常过滤器>()
             )
         );
         kernel.Plugins.AddFromFunctions(
