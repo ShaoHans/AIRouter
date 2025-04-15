@@ -2,24 +2,29 @@
 using AIRouter.Console.Plugins;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
-using Serilog;
 
-var configuration = new ConfigurationBuilder()
-    .SetBasePath(AppContext.BaseDirectory)
-    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-    .AddUserSecrets<Program>()
+var host = Host.CreateDefaultBuilder(args)
+    .ConfigureAppConfiguration(config =>
+    {
+        config
+            .SetBasePath(AppContext.BaseDirectory)
+            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+            .AddUserSecrets<Program>();
+    })
+    .ConfigureServices(
+        (context, services) =>
+        {
+            services.RegisterKernels(context.Configuration);
+        }
+    )
     .Build();
 
-//var kernel = Kernel.CreateBuilder().AddChatCompletion(configuration, "ollama").Build();
-
-var services = new ServiceCollection();
-services.RegisterKernels(configuration);
-services.AddSerilog(configuration);
-var sp = services.BuildServiceProvider();
-var kernel = sp.GetRequiredKeyedService<Kernel>("zhipu");
+var kernel = host.Services.GetRequiredKeyedService<Kernel>("zhipu");
 
 #region 01Templates
 
@@ -39,15 +44,17 @@ var kernel = sp.GetRequiredKeyedService<Kernel>("zhipu");
 //await B04自动调用插件方法_FunctionChoiceBehavior.TestAsync(kernel);
 //await B04被动调用插件方法_FunctionChoiceBehavior.TestAsync(kernel);
 //await B05广播插件方法_FunctionChoiceBehavior.TestRequiredAsync(kernel);
-//await B05广播插件方法_FunctionChoiceBehavior.TestNoneAsync(kernel); 
+//await B05广播插件方法_FunctionChoiceBehavior.TestNoneAsync(kernel);
 #endregion
 
 #region 03Filters
 
-//await C01异常过滤器.TestAsync(kernel);
-await C02审计过滤器.TestAsync(kernel); 
+await C01异常过滤器.TestAsync(kernel);
+//await C02审计过滤器.TestAsync(kernel);
 
 #endregion
+
+await host.RunAsync();
 
 return;
 var chatCompletionService = kernel.Services.GetRequiredService<IChatCompletionService>();

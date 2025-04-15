@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
@@ -11,7 +11,11 @@ internal class C01异常过滤器
     public static async Task TestAsync(Kernel kernel)
     {
         kernel.FunctionInvocationFilters.Clear();
-        kernel.FunctionInvocationFilters.Add(new ExceptionHandleFilter(NullLogger.Instance));
+        kernel.FunctionInvocationFilters.Add(
+            new ExceptionHandleFilter(
+                kernel.Services.GetRequiredService<ILoggerProvider>().CreateLogger(nameof(C01异常过滤器))
+            )
+        );
         kernel.Plugins.AddFromFunctions(
             "TimePlugin",
             [
@@ -46,7 +50,10 @@ internal class C01异常过滤器
 
         System.Console.WriteLine(result.ToString());
 
-        var function = KernelFunctionFactory.CreateFromMethod(() => { throw new KernelException("Exception in function"); });
+        var function = KernelFunctionFactory.CreateFromMethod(() =>
+        {
+            throw new KernelException("Exception in function");
+        });
 
         var result2 = await kernel.InvokeAsync(function);
 
@@ -68,7 +75,10 @@ internal class ExceptionHandleFilter(ILogger logger) : IFunctionInvocationFilter
         catch (Exception ex)
         {
             logger.LogError(ex, "执行插件方法出现异常");
-            context.Result = new FunctionResult(context.Result, "Friendly message instead of exception");
+            context.Result = new FunctionResult(
+                context.Result,
+                "Friendly message instead of exception"
+            );
         }
     }
 }
