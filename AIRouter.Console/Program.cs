@@ -21,7 +21,7 @@ services.AddSerilog(configuration);
 var sp = services.BuildServiceProvider();
 var kernel = sp.GetRequiredKeyedService<Kernel>("zhipu");
 
-#region 提示词
+#region 01Templates
 
 //await A01内联提示词.TestAsync(kernel);
 //await A02文件模板提示词.TestTxtAsync(kernel);
@@ -31,6 +31,7 @@ var kernel = sp.GetRequiredKeyedService<Kernel>("zhipu");
 
 #endregion
 
+#region 02Plugins
 //await B01自动调用插件方法_ToolCallBehavior.AutoInvokePluginMethodAsync(kernel);
 //await B01自动调用插件方法_ToolCallBehavior.AutoInvokeKernelFunctionsAsync(kernel);
 //await B02手动调用插件方法_ToolCallBehavior.TestAsync(kernel);
@@ -38,8 +39,15 @@ var kernel = sp.GetRequiredKeyedService<Kernel>("zhipu");
 //await B04自动调用插件方法_FunctionChoiceBehavior.TestAsync(kernel);
 //await B04被动调用插件方法_FunctionChoiceBehavior.TestAsync(kernel);
 //await B05广播插件方法_FunctionChoiceBehavior.TestRequiredAsync(kernel);
-//await B05广播插件方法_FunctionChoiceBehavior.TestNoneAsync(kernel);
-await C01异常过滤器.TestAsync(kernel);
+//await B05广播插件方法_FunctionChoiceBehavior.TestNoneAsync(kernel); 
+#endregion
+
+#region 03Filters
+
+//await C01异常过滤器.TestAsync(kernel);
+await C02审计过滤器.TestAsync(kernel); 
+
+#endregion
 
 return;
 var chatCompletionService = kernel.Services.GetRequiredService<IChatCompletionService>();
