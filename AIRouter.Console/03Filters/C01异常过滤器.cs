@@ -1,4 +1,5 @@
-﻿using AIRouter.Console.Plugins;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
@@ -10,14 +11,30 @@ internal class C01异常过滤器
     public static async Task TestAsync(Kernel kernel)
     {
         kernel.FunctionInvocationFilters.Clear();
-        kernel.FunctionInvocationFilters.Add(new ExceptionHandleFilter());
-        kernel.Plugins.AddFromType<MyMathPlugin>();
+        kernel.FunctionInvocationFilters.Add(new ExceptionHandleFilter(NullLogger.Instance));
+        kernel.Plugins.AddFromFunctions(
+            "TimePlugin",
+            [
+                KernelFunctionFactory.CreateFromMethod(
+                    method: () =>
+                    {
+                        if (DateTime.Now.Hour == 21)
+                        {
+                            throw new Exception("测试FunctionInvocationFilter异常过滤器");
+                        }
+                        return DateTime.Now;
+                    },
+                    functionName: "GetCurrentTime",
+                    description: "获取当前系统时间"
+                )
+            ]
+        );
         var settings = new OpenAIPromptExecutionSettings
         {
-            FunctionChoiceBehavior = FunctionChoiceBehavior.Auto()
+            ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions
         };
 
-        System.Console.WriteLine("你可以让AI助理做算术运算");
+        System.Console.WriteLine("你可以询问AI助理当前时间");
         var prompt = System.Console.ReadLine();
         var result = await kernel
             .GetRequiredService<IChatCompletionService>()
@@ -28,10 +45,16 @@ internal class C01异常过滤器
             );
 
         System.Console.WriteLine(result.ToString());
+
+        var function = KernelFunctionFactory.CreateFromMethod(() => { throw new KernelException("Exception in function"); });
+
+        var result2 = await kernel.InvokeAsync(function);
+
+        System.Console.WriteLine(result2);
     }
 }
 
-internal class ExceptionHandleFilter : IFunctionInvocationFilter
+internal class ExceptionHandleFilter(ILogger logger) : IFunctionInvocationFilter
 {
     public async Task OnFunctionInvocationAsync(
         FunctionInvocationContext context,
@@ -44,7 +67,8 @@ internal class ExceptionHandleFilter : IFunctionInvocationFilter
         }
         catch (Exception ex)
         {
-            context.Result = new FunctionResult(context.Result, ex);
+            logger.LogError(ex, "执行插件方法出现异常");
+            context.Result = new FunctionResult(context.Result, "Friendly message instead of exception");
         }
     }
 }

@@ -38,7 +38,7 @@ internal class MyMathPlugin
     {
         if (b == 0)
         {
-            throw new DivideByZeroException("炸锅了！！！");
+            throw new DivideByZeroException("取模运算除数不能为0");
         }
         return a % b;
     }
