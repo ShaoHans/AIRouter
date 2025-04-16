@@ -25,6 +25,18 @@ internal class OpenAICompatibleRegister : ModelProviderRegisterBase
             return;
         }
 
+#if DEBUG
+        builder.AddOpenAIChatCompletion(
+            modelId: modelId,
+            apiKey: provider.ApiKey,
+            endpoint: new Uri(provider.Endpoint!),
+            httpClient: new HttpClient(
+                new OpenAIHttpClientHandler(
+                    sp.GetRequiredService<ILoggerFactory>().CreateLogger<OpenAIHttpClientHandler>()
+                )
+            )
+        );
+#else
         builder.AddOpenAIChatCompletion(
             modelId: modelId,
             openAIClient: new OpenAIClient(
@@ -32,16 +44,7 @@ internal class OpenAICompatibleRegister : ModelProviderRegisterBase
                 new OpenAIClientOptions { Endpoint = new Uri(provider.Endpoint!) }
             )
         );
-
-        builder.AddOpenAIChatCompletion(
-            modelId: modelId,
-            apiKey: provider.ApiKey,
-            httpClient: new HttpClient(
-                new OpenAIHttpClientHandler(
-                    sp.GetRequiredService<ILoggerFactory>().CreateLogger<OpenAIHttpClientHandler>()
-                )
-            )
-        );
+#endif
     }
 
     [Experimental("SKEXP0010")]

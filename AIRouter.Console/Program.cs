@@ -19,11 +19,12 @@ var host = Host.CreateDefaultBuilder(args)
         (context, services) =>
         {
             services.RegisterKernels(context.Configuration);
+            services.AddSerilog();
         }
     )
     .Build();
 
-var kernel = host.Services.GetRequiredKeyedService<Kernel>("zhipu");
+var kernel = host.Services.GetRequiredKeyedService<Kernel>("siliconflow");
 
 #region 01Templates
 
@@ -48,8 +49,8 @@ var kernel = host.Services.GetRequiredKeyedService<Kernel>("zhipu");
 
 #region 03Filters
 
-await C01异常过滤器.TestAsync(kernel);
-//await C02审计过滤器.TestAsync(kernel);
+//await C01异常过滤器.TestAsync(kernel);
+await C02审计过滤器.TestAsync(kernel);
 
 #endregion
 
