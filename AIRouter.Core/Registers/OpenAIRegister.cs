@@ -8,7 +8,11 @@ internal class OpenAIRegister : ModelProviderRegisterBase
 {
     public override ModelProviderType ProviderType => ModelProviderType.OpenAI;
 
-    protected override void AddChatCompletionService(IKernelBuilder builder, ModelProvider provider)
+    protected override void AddChatCompletionService(
+        IKernelBuilder builder,
+        IServiceProvider sp,
+        ModelProvider provider
+    )
     {
         var modelId = provider.GetChatCompletionModelId();
         if (string.IsNullOrWhiteSpace(modelId))
@@ -20,7 +24,11 @@ internal class OpenAIRegister : ModelProviderRegisterBase
     }
 
     [Experimental("SKEXP0010")]
-    protected override void AddTextEmbeddingService(IKernelBuilder builder, ModelProvider provider)
+    protected override void AddTextEmbeddingService(
+        IKernelBuilder builder,
+        IServiceProvider sp,
+        ModelProvider provider
+    )
     {
         var modelId = provider.GetTextEmbeddingModelId();
         if (string.IsNullOrWhiteSpace(modelId))

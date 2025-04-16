@@ -52,7 +52,7 @@ public static class ServiceCollectionEextensions
             var logger = new LoggerConfiguration()
                 .MinimumLevel.Information()
                 //.MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
-                .ReadFrom.Configuration(configuration)
+                .ReadFrom.Configuration(configuration!)
                 .CreateLogger();
             builder.AddSerilog(logger);
         });

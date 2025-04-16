@@ -1,4 +1,4 @@
-﻿namespace AIRouter.Core.Ollama;
+﻿namespace AIRouter.Core.ClientHandlers;
 
 internal class OllamaHttpClientHandler(string url) : HttpClientHandler
 {
