@@ -1,5 +1,6 @@
 ﻿using AIRouter.Console.Filters;
 using AIRouter.Console.Plugins;
+using AIRouter.Console.Templates;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,7 +25,7 @@ var host = Host.CreateDefaultBuilder(args)
     )
     .Build();
 
-var kernel = host.Services.GetRequiredKeyedService<Kernel>("siliconflow");
+var kernel = host.Services.GetRequiredKeyedService<Kernel>("zhipu");
 
 #region 01Templates
 
@@ -33,6 +34,7 @@ var kernel = host.Services.GetRequiredKeyedService<Kernel>("siliconflow");
 //await A02文件模板提示词.TestYamlAsync(kernel);
 //await A03Handlebars模板提示词.TestAsync(kernel);
 //await A04Liquid模板提示词.TestAsync(kernel);
+await A05结构化Json输出.TestAsync(kernel);
 
 #endregion
 
@@ -50,7 +52,7 @@ var kernel = host.Services.GetRequiredKeyedService<Kernel>("siliconflow");
 #region 03Filters
 
 //await C01异常过滤器.TestAsync(kernel);
-await C02审计过滤器.TestAsync(kernel);
+//await C02审计过滤器.TestAsync(kernel);
 
 #endregion
 
