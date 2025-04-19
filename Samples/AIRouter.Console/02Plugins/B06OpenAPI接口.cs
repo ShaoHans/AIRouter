@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.SemanticKernel;
+using Microsoft.SemanticKernel.Connectors.OpenAI;
+using Microsoft.SemanticKernel.Plugins.Core;
 
 namespace AIRouter.Console.Plugins;
 
@@ -8,6 +10,7 @@ internal class B06OpenAPI接口
 {
     public static async Task TestAsync(Kernel kernel)
     {
+        kernel.Plugins.Clear();
         var logger = kernel
             .Services.GetRequiredService<ILoggerFactory>()
             .CreateLogger<B06OpenAPI接口>();
@@ -18,8 +21,46 @@ internal class B06OpenAPI接口
         logger.LogInformation("WebApi插件信息：{plugin}", plugin);
 
         var result = await plugin["GetWeatherForecast"].InvokeAsync(kernel);
-
-        //var result = await kernel.InvokePromptAsync("获取天气预报");
         System.Console.WriteLine(result.ToString());
+
+        result = await kernel.InvokePromptAsync(
+            "总共有多少个会议室",
+            new KernelArguments(
+                new OpenAIPromptExecutionSettings
+                {
+                    FunctionChoiceBehavior = FunctionChoiceBehavior.Auto()
+                }
+            )
+        );
+        System.Console.WriteLine(result.ToString());
+    }
+
+    public static async Task ReserveMeetingRoomAsync(Kernel kernel)
+    {
+        var logger = kernel
+            .Services.GetRequiredService<ILoggerFactory>()
+            .CreateLogger<B06OpenAPI接口>();
+
+        kernel.Plugins.Clear();
+#pragma warning disable SKEXP0050 // 类型仅用于评估，在将来的更新中可能会被更改或删除。取消此诊断以继续。
+        kernel.Plugins.AddFromType<TimePlugin>();
+        var plugin = await kernel.ImportPluginFromOpenApiAsync(
+            pluginName: "MeetingRoomPlugin",
+            uri: new Uri("https://localhost:7030/openapi/v1.json") // Samples/AIRouter.WebAPI示例项目
+        );
+        logger.LogInformation("MeetingRoomPlugin插件信息：{plugin}", plugin);
+
+        var result = await kernel.InvokePromptAsync(
+            "帮我预定今天上午10点到12点的会议室，人数50人",
+            //"帮我预定今天上午10点到12点的会议室，人数5人",
+            new KernelArguments(
+                new OpenAIPromptExecutionSettings
+                {
+                    FunctionChoiceBehavior = FunctionChoiceBehavior.Auto()
+                }
+            )
+        );
+        System.Console.WriteLine(result.ToString());
+#pragma warning restore SKEXP0050 // 类型仅用于评估，在将来的更新中可能会被更改或删除。取消此诊断以继续。
     }
 }

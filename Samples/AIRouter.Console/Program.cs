@@ -47,7 +47,9 @@ var kernel = host.Services.GetRequiredKeyedService<Kernel>("zhipu");
 //await B04被动调用插件方法_FunctionChoiceBehavior.TestAsync(kernel);
 //await B05广播插件方法_FunctionChoiceBehavior.TestRequiredAsync(kernel);
 //await B05广播插件方法_FunctionChoiceBehavior.TestNoneAsync(kernel);
-await B06OpenAPI接口.TestAsync(kernel);
+//await B06OpenAPI接口.TestAsync(kernel);
+await B06OpenAPI接口.ReserveMeetingRoomAsync(kernel);
+
 #endregion
 
 #region 03Filters
