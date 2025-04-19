@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{02EA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIRouter.Console", "Samples\AIRouter.Console\AIRouter.Console.csproj", "{3B5844B7-C6DA-0F6E-3982-9734143DA307}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIRouter.WebAPI", "Samples\AIRouter.WebAPI\AIRouter.WebAPI.csproj", "{355E647D-7963-4C81-B327-D3E8C507E6E2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,12 +25,17 @@ Global
 		{3B5844B7-C6DA-0F6E-3982-9734143DA307}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B5844B7-C6DA-0F6E-3982-9734143DA307}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B5844B7-C6DA-0F6E-3982-9734143DA307}.Release|Any CPU.Build.0 = Release|Any CPU
+		{355E647D-7963-4C81-B327-D3E8C507E6E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{355E647D-7963-4C81-B327-D3E8C507E6E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{355E647D-7963-4C81-B327-D3E8C507E6E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{355E647D-7963-4C81-B327-D3E8C507E6E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3B5844B7-C6DA-0F6E-3982-9734143DA307} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{355E647D-7963-4C81-B327-D3E8C507E6E2} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2EE99FA5-F1AE-42C4-B30C-281898B50A58}
