@@ -2,6 +2,9 @@ namespace AIRouter.WebAPI;
 
 public class WeatherForecast
 {
+    /// <summary>
+    /// ÈÕÆÚ
+    /// </summary>
     public DateOnly Date { get; set; }
 
     public int TemperatureC { get; set; }

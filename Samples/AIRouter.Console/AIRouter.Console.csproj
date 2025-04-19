@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AIRouter.Core\AIRouter.Core.csproj" />
+    <ProjectReference Include="..\..\AIRouter.Core\AIRouter.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

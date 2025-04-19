@@ -34,7 +34,7 @@ var kernel = host.Services.GetRequiredKeyedService<Kernel>("zhipu");
 //await A02文件模板提示词.TestYamlAsync(kernel);
 //await A03Handlebars模板提示词.TestAsync(kernel);
 //await A04Liquid模板提示词.TestAsync(kernel);
-await A05结构化Json输出.TestAsync(kernel);
+//await A05结构化Json输出.TestAsync(kernel);
 
 #endregion
 
@@ -47,6 +47,7 @@ await A05结构化Json输出.TestAsync(kernel);
 //await B04被动调用插件方法_FunctionChoiceBehavior.TestAsync(kernel);
 //await B05广播插件方法_FunctionChoiceBehavior.TestRequiredAsync(kernel);
 //await B05广播插件方法_FunctionChoiceBehavior.TestNoneAsync(kernel);
+await B06OpenAPI接口.TestAsync(kernel);
 #endregion
 
 #region 03Filters
