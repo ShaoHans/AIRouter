@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
 using Microsoft.SemanticKernel.Plugins.Core;
+using Microsoft.SemanticKernel.Plugins.OpenApi;
 
 namespace AIRouter.Console.Plugins;
 
@@ -44,10 +45,16 @@ internal class B06OpenAPI接口
         kernel.Plugins.Clear();
 #pragma warning disable SKEXP0050 // 类型仅用于评估，在将来的更新中可能会被更改或删除。取消此诊断以继续。
         kernel.Plugins.AddFromType<TimePlugin>();
+#pragma warning disable SKEXP0040 // 类型仅用于评估，在将来的更新中可能会被更改或删除。取消此诊断以继续。
         var plugin = await kernel.ImportPluginFromOpenApiAsync(
             pluginName: "MeetingRoomPlugin",
-            uri: new Uri("https://localhost:7030/openapi/v1.json") // Samples/AIRouter.WebAPI示例项目
+            uri: new Uri("https://localhost:7030/openapi/v1.json"), // Samples/AIRouter.WebAPI示例项目
+            executionParameters: new OpenApiFunctionExecutionParameters 
+            { 
+                OperationsToExclude = ["GetWeatherForecast"]
+            }
         );
+#pragma warning restore SKEXP0040 // 类型仅用于评估，在将来的更新中可能会被更改或删除。取消此诊断以继续。
         logger.LogInformation("MeetingRoomPlugin插件信息：{plugin}", plugin);
 
         var result = await kernel.InvokePromptAsync(
