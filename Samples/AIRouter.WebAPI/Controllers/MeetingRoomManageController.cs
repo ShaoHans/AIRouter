@@ -7,37 +7,35 @@ namespace AIRouter.WebAPI.Controllers;
 [Route("[controller]/[action]")]
 public class MeetingRoomManageController : ControllerBase
 {
-    private static List<MeetingRoom> _meetingRooms = new List<MeetingRoom>
-    {
-        new MeetingRoom
-        {
+    private static readonly List<MeetingRoom> _meetingRooms =
+    [
+        new() {
             Name = "会议室A",
             Capacity = 10,
-            ReserveRecords = new List<MeetingRoomReserveRecord>
-            {
+            ReserveRecords =
+            [
                 new MeetingRoomReserveRecord
                 {
                     MeetingRoomName = "会议室A",
                     StartTime = DateTime.Now.AddHours(1),
                     EndTime = DateTime.Now.AddHours(2)
                 }
-            }
+            ]
         },
-        new MeetingRoom
-        {
+        new() {
             Name = "会议室B",
             Capacity = 20,
-            ReserveRecords = new List<MeetingRoomReserveRecord>
-            {
+            ReserveRecords =
+            [
                 new MeetingRoomReserveRecord
                 {
                     MeetingRoomName = "会议室B",
                     StartTime = DateTime.Now.AddHours(3),
                     EndTime = DateTime.Now.AddHours(4)
                 }
-            }
+            ]
         }
-    };
+    ];
 
     public MeetingRoomManageController() { }
 
