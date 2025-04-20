@@ -31,6 +31,11 @@ internal class OpenAIHttpClientHandler(ILogger<OpenAIHttpClientHandler> logger) 
             responseContent
         );
 
+        // 如果使用Agent.InvokeStreamingAsync流式输出，需要将响应流重置到最开始位置
+        //MemoryStream responseStream = new(await response.Content.ReadAsByteArrayAsync(cancellationToken));
+        //responseStream.Position = 0;
+        //response.Content = new StreamContent(responseStream);
+
         return response;
     }
 }

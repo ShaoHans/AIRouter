@@ -17,7 +17,7 @@ internal class D01简单问答Agent
         // Define a thread variable to maintain the conversation context.
         // Since we are passing a null thread to InvokeAsync on the first invocation,
         // the agent will create a new thread for the conversation.
-        AgentThread? thread = null;
+        ChatHistoryAgentThread thread = new();
 
         while (true)
         {
@@ -29,10 +29,21 @@ internal class D01简单问答Agent
             }
             System.Console.Write("Assistant > ");
 
+            //var asyncResults = agent.InvokeStreamingAsync(userMessage, thread);
+            //await foreach(var a in asyncResults)
+            //{
+            //    System.Console.Write(a.Message.Content);
+            //}
+
+            //await foreach (var response in agent.InvokeStreamingAsync(userMessage, thread))
+            //{
+            //    System.Console.Write($"{response.Message.Content}"); // Stream to console
+            //}
+
             await foreach (AgentResponseItem<ChatMessageContent> response in agent.InvokeAsync(userMessage, thread))
             {
                 System.Console.Write(response.Message.Content);
-                thread = response.Thread;
+                thread = (ChatHistoryAgentThread)response.Thread;
             }
 
             System.Console.WriteLine();
