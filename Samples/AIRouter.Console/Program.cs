@@ -1,4 +1,5 @@
-﻿using AIRouter.Console.Filters;
+﻿using AIRouter.Console.Agents;
+using AIRouter.Console.Filters;
 using AIRouter.Console.Plugins;
 using AIRouter.Console.Templates;
 using Microsoft.Extensions.Configuration;
@@ -48,7 +49,7 @@ var kernel = host.Services.GetRequiredKeyedService<Kernel>("zhipu");
 //await B05广播插件方法_FunctionChoiceBehavior.TestRequiredAsync(kernel);
 //await B05广播插件方法_FunctionChoiceBehavior.TestNoneAsync(kernel);
 //await B06OpenAPI接口.TestAsync(kernel);
-await B06OpenAPI接口.ReserveMeetingRoomAsync(kernel);
+//await B06OpenAPI接口.ReserveMeetingRoomAsync(kernel);
 
 #endregion
 
@@ -56,6 +57,12 @@ await B06OpenAPI接口.ReserveMeetingRoomAsync(kernel);
 
 //await C01异常过滤器.TestAsync(kernel);
 //await C02审计过滤器.TestAsync(kernel);
+
+#endregion
+
+#region 04Agents
+
+await D01简单问答Agent.TestAsync(kernel);
 
 #endregion
 
