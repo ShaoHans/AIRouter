@@ -11,6 +11,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIRouter.Console", "Samples
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIRouter.WebAPI", "Samples\AIRouter.WebAPI\AIRouter.WebAPI.csproj", "{355E647D-7963-4C81-B327-D3E8C507E6E2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIRouter.ChatApp.AppHost", "samples\AIRouter.ChatApp\AIRouter.ChatApp.AppHost\AIRouter.ChatApp.AppHost.csproj", "{E90C25A1-C606-0E26-AB67-2C57BF573A7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIRouter.ChatApp.ServiceDefaults", "samples\AIRouter.ChatApp\AIRouter.ChatApp.ServiceDefaults\AIRouter.ChatApp.ServiceDefaults.csproj", "{7DA46D8B-2961-192D-FD77-1F3A2E43AEEF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIRouter.ChatApp.Web", "samples\AIRouter.ChatApp\AIRouter.ChatApp.Web\AIRouter.ChatApp.Web.csproj", "{788AA83E-FDE6-72DF-5669-B3CC3B4C30C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +35,18 @@ Global
 		{355E647D-7963-4C81-B327-D3E8C507E6E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{355E647D-7963-4C81-B327-D3E8C507E6E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{355E647D-7963-4C81-B327-D3E8C507E6E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E90C25A1-C606-0E26-AB67-2C57BF573A7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E90C25A1-C606-0E26-AB67-2C57BF573A7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E90C25A1-C606-0E26-AB67-2C57BF573A7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E90C25A1-C606-0E26-AB67-2C57BF573A7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DA46D8B-2961-192D-FD77-1F3A2E43AEEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DA46D8B-2961-192D-FD77-1F3A2E43AEEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DA46D8B-2961-192D-FD77-1F3A2E43AEEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DA46D8B-2961-192D-FD77-1F3A2E43AEEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{788AA83E-FDE6-72DF-5669-B3CC3B4C30C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{788AA83E-FDE6-72DF-5669-B3CC3B4C30C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{788AA83E-FDE6-72DF-5669-B3CC3B4C30C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{788AA83E-FDE6-72DF-5669-B3CC3B4C30C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,6 +54,9 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{3B5844B7-C6DA-0F6E-3982-9734143DA307} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{355E647D-7963-4C81-B327-D3E8C507E6E2} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{E90C25A1-C606-0E26-AB67-2C57BF573A7F} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{7DA46D8B-2961-192D-FD77-1F3A2E43AEEF} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{788AA83E-FDE6-72DF-5669-B3CC3B4C30C7} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2EE99FA5-F1AE-42C4-B30C-281898B50A58}

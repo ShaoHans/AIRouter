@@ -1,0 +1,34 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{6395B1B7-3976-448B-92A9-718E02686CC4}") = "AIRouter.ChatApp.AppHost", "AIRouter.ChatApp.AppHost\AIRouter.ChatApp.AppHost.csproj", "{B021B0AA-16DC-4D7A-8FD5-2DA46911CB9F}"
+EndProject
+Project("{6395B1B7-3976-448B-92A9-718E02686CC4}") = "AIRouter.ChatApp.ServiceDefaults", "AIRouter.ChatApp.ServiceDefaults\AIRouter.ChatApp.ServiceDefaults.csproj", "{BAB4D00C-C8AB-433B-BF47-372D0724FBB5}"
+EndProject
+Project("{6395B1B7-3976-448B-92A9-718E02686CC4}") = "AIRouter.ChatApp.Web", "AIRouter.ChatApp.Web\AIRouter.ChatApp.Web.csproj", "{C3D8A91D-255E-45CD-AD79-16DEE5EB944D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B021B0AA-16DC-4D7A-8FD5-2DA46911CB9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B021B0AA-16DC-4D7A-8FD5-2DA46911CB9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B021B0AA-16DC-4D7A-8FD5-2DA46911CB9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B021B0AA-16DC-4D7A-8FD5-2DA46911CB9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAB4D00C-C8AB-433B-BF47-372D0724FBB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAB4D00C-C8AB-433B-BF47-372D0724FBB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAB4D00C-C8AB-433B-BF47-372D0724FBB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAB4D00C-C8AB-433B-BF47-372D0724FBB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3D8A91D-255E-45CD-AD79-16DEE5EB944D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3D8A91D-255E-45CD-AD79-16DEE5EB944D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3D8A91D-255E-45CD-AD79-16DEE5EB944D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3D8A91D-255E-45CD-AD79-16DEE5EB944D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
