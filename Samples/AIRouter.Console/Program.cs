@@ -26,7 +26,7 @@ var host = Host.CreateDefaultBuilder(args)
     )
     .Build();
 
-var kernel = host.Services.GetRequiredKeyedService<Kernel>("zhipu");
+var kernel = host.Services.GetRequiredKeyedService<Kernel>("github");
 
 #region 01Templates
 
