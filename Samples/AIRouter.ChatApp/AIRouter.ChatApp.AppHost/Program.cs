@@ -1,4 +1,8 @@
+using Microsoft.Extensions.Configuration;
+
 var builder = DistributedApplication.CreateBuilder(args);
+
+builder.Configuration.AddUserSecrets<Program>();
 
 // You will need to set the connection string to your own value
 // You can do this using Visual Studio's "Manage User Secrets" UI, or on the command line:
@@ -10,8 +14,6 @@ var ingestionCache = builder.AddSqlite("ingestionCache");
 
 var webApp = builder.AddProject<Projects.AIRouter_ChatApp_Web>("aichatweb-app");
 webApp.WithReference(openai);
-webApp
-    .WithReference(ingestionCache)
-    .WaitFor(ingestionCache);
+webApp.WithReference(ingestionCache).WaitFor(ingestionCache);
 
 builder.Build().Run();

@@ -1,19 +1,18 @@
-using Microsoft.Extensions.AI;
-using Microsoft.Extensions.VectorData;
 using AIRouter.ChatApp.Web.Components;
 using AIRouter.ChatApp.Web.Services;
 using AIRouter.ChatApp.Web.Services.Ingestion;
-using OpenAI;
+using Microsoft.Extensions.AI;
+using Microsoft.Extensions.VectorData;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.AddServiceDefaults();
+builder.AddServiceDefaults().Configuration.AddUserSecrets<Program>();
 builder.Services.AddRazorComponents().AddInteractiveServerComponents();
 
 var openai = builder.AddAzureOpenAIClient("openai");
-openai.AddChatClient("gpt-4o-mini")
+openai
+    .AddChatClient("gpt-4o-mini")
     .UseFunctionInvocation()
-    .UseOpenTelemetry(configure: c =>
-        c.EnableSensitiveData = builder.Environment.IsDevelopment());
+    .UseOpenTelemetry(configure: c => c.EnableSensitiveData = builder.Environment.IsDevelopment());
 openai.AddEmbeddingGenerator("text-embedding-3-small");
 
 var vectorStore = new JsonVectorStore(Path.Combine(AppContext.BaseDirectory, "vector-store"));
@@ -39,8 +38,7 @@ app.UseHttpsRedirection();
 app.UseAntiforgery();
 
 app.UseStaticFiles();
-app.MapRazorComponents<App>()
-    .AddInteractiveServerRenderMode();
+app.MapRazorComponents<App>().AddInteractiveServerRenderMode();
 
 // By default, we ingest PDF files from the /wwwroot/Data directory. You can ingest from
 // other sources by implementing IIngestionSource.
@@ -48,6 +46,7 @@ app.MapRazorComponents<App>()
 // to users or could be a source of prompt injection risk.
 await DataIngestor.IngestDataAsync(
     app.Services,
-    new PDFDirectorySource(Path.Combine(builder.Environment.WebRootPath, "Data")));
+    new PDFDirectorySource(Path.Combine(builder.Environment.WebRootPath, "Data"))
+);
 
 app.Run();
