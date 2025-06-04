@@ -44,14 +44,16 @@ internal class B06OpenAPI接口
 
         kernel.Plugins.Clear();
         kernel.Plugins.AddFromType<TimePlugin>();
+#pragma warning disable SKEXP0040 // 类型仅用于评估，在将来的更新中可能会被更改或删除。取消此诊断以继续。
         var plugin = await kernel.ImportPluginFromOpenApiAsync(
             pluginName: "MeetingRoomPlugin",
             uri: new Uri("https://localhost:7030/openapi/v1.json"), // Samples/AIRouter.WebAPI示例项目
-            executionParameters: new OpenApiFunctionExecutionParameters 
-            { 
-                OperationsToExclude = ["GetWeatherForecast"]
+            executionParameters: new OpenApiFunctionExecutionParameters
+            {
+                OperationSelectionPredicate = (context) => context.Id != "GetWeatherForecast"
             }
         );
+#pragma warning restore SKEXP0040 // 类型仅用于评估，在将来的更新中可能会被更改或删除。取消此诊断以继续。
         logger.LogInformation("MeetingRoomPlugin插件信息：{plugin}", plugin);
 
         var result = await kernel.InvokePromptAsync(
