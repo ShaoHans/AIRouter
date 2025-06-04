@@ -64,6 +64,6 @@ internal class OpenAICompatibleRegister : ModelProviderRegisterBase
             new ApiKeyCredential(provider.ApiKey),
             new OpenAIClientOptions { Endpoint = new Uri(provider.Endpoint!), }
         );
-        builder.AddOpenAITextEmbeddingGeneration(modelId: modelId, openAIClient: openAIClient);
+        builder.AddOpenAIEmbeddingGenerator(modelId: modelId, openAIClient: openAIClient);
     }
 }

@@ -9,9 +9,7 @@ internal class D01简单问答Agent
 {
     public static async Task TestAsync(Kernel kernel)
     {
-#pragma warning disable SKEXP0050 // 类型仅用于评估，在将来的更新中可能会被更改或删除。取消此诊断以继续。
         kernel.Plugins.AddFromType<TimePlugin>();
-#pragma warning restore SKEXP0050 // 类型仅用于评估，在将来的更新中可能会被更改或删除。取消此诊断以继续。
         var agent = new ChatCompletionAgent
         {
             Name = "AI问答助手",

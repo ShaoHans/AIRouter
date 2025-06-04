@@ -36,6 +36,6 @@ internal class OpenAIRegister : ModelProviderRegisterBase
             return;
         }
 
-        builder.AddOpenAITextEmbeddingGeneration(modelId: modelId, apiKey: provider.ApiKey);
+        builder.AddOpenAIEmbeddingGenerator(modelId: modelId, apiKey: provider.ApiKey);
     }
 }

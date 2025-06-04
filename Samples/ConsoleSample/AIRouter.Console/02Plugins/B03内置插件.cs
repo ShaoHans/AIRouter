@@ -9,15 +9,13 @@ internal class B03内置插件
 {
     public static async Task TestAsync(Kernel kernel)
     {
-#pragma warning disable SKEXP0050
-
         kernel.Plugins.AddFromType<TimePlugin>();
-        kernel.Plugins.AddFromType<MathPlugin>();
+        //kernel.Plugins.AddFromType<MathPlugin>();
         kernel.Plugins.AddFromType<HttpPlugin>();
         kernel.Plugins.AddFromType<ConversationSummaryPlugin>();
         kernel.Plugins.AddFromType<FileIOPlugin>();
         kernel.Plugins.AddFromType<TextPlugin>();
-        kernel.Plugins.AddFromType<WaitPlugin>();
+        //kernel.Plugins.AddFromType<WaitPlugin>();
 
         var settings = new OpenAIPromptExecutionSettings
         {
@@ -35,6 +33,5 @@ internal class B03内置插件
             );
         System.Console.WriteLine(result.ToString());
 
-#pragma warning restore SKEXP0050
     }
 }
