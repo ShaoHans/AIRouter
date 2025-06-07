@@ -1,5 +1,6 @@
 ﻿using AIRouter.Console.Agents;
 using AIRouter.Console.Filters;
+using AIRouter.Console.MCP;
 using AIRouter.Console.Plugins;
 using AIRouter.Console.Templates;
 using Microsoft.Extensions.Configuration;
@@ -63,7 +64,14 @@ var kernel = host.Services.GetRequiredKeyedService<Kernel>("zhipu");
 #region 04Agents
 
 //await D01简单问答Agent.TestAsync(kernel);
-await D02翻译Agent.TestAsync(kernel);
+//await D02翻译Agent.TestAsync(kernel);
+
+#endregion
+
+#region 06MCP
+
+//await F01Github.ListToolsAsync();
+await F01Github.CallToolAsync();
 
 #endregion
 
