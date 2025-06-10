@@ -64,14 +64,15 @@ var kernel = host.Services.GetRequiredKeyedService<Kernel>("zhipu");
 #region 04Agents
 
 //await D01简单问答Agent.TestAsync(kernel);
-//await D02翻译Agent.TestAsync(kernel);
+await D02翻译Agent.TestAsync(kernel);
 
 #endregion
 
 #region 06MCP
 
 //await F01Github.ListToolsAsync();
-await F01Github.CallToolAsync();
+//await F01Github.CallToolAsync();
+//await F01Github.SummarizeAsync(kernel);
 
 #endregion
 

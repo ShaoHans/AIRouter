@@ -22,19 +22,19 @@ internal class OpenAIHttpClientHandler(ILogger<OpenAIHttpClientHandler> logger) 
 
         var response = await base.SendAsync(request, cancellationToken);
 
-        var responseContent = await response.Content.ReadAsStringAsync(cancellationToken);
+        //var responseContent = await response.Content.ReadAsStringAsync(cancellationToken);
 
-        logger.LogInformation(
-            "Received '{Response.StatusCodeInt} {Response.StatusCodeString}' with content {Response.Content}",
-            (int)response.StatusCode,
-            response.StatusCode,
-            responseContent
-        );
+        //logger.LogInformation(
+        //    "Received '{Response.StatusCodeInt} {Response.StatusCodeString}' with content {Response.Content}",
+        //    (int)response.StatusCode,
+        //    response.StatusCode,
+        //    responseContent
+        //);
 
         // 如果使用Agent.InvokeStreamingAsync流式输出，需要将响应流重置到最开始位置
-        //MemoryStream responseStream = new(await response.Content.ReadAsByteArrayAsync(cancellationToken));
-        //responseStream.Position = 0;
-        //response.Content = new StreamContent(responseStream);
+        MemoryStream responseStream = new(await response.Content.ReadAsByteArrayAsync(cancellationToken));
+        responseStream.Position = 0;
+        response.Content = new StreamContent(responseStream);
 
         return response;
     }
