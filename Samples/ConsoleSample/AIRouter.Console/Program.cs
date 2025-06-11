@@ -72,7 +72,8 @@ var kernel = host.Services.GetRequiredKeyedService<Kernel>("zhipu");
 
 //await F01Github.ListToolsAsync();
 //await F01Github.CallToolAsync();
-await F01Github.SummarizeAsync(kernel);
+//await F01Github.SummarizeAsync(kernel);
+await F01Github.MapMcpFunctionAsync(kernel);
 
 #endregion
 

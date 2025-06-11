@@ -1,9 +1,10 @@
-﻿using System.Text.Json;
-using Microsoft.Extensions.AI;
+﻿using Microsoft.Extensions.AI;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
+using Microsoft.SemanticKernel.Connectors.OpenAI;
 using ModelContextProtocol.Client;
 using OpenAI.Chat;
+using System.Text.Json;
 
 namespace AIRouter.Console.MCP;
 
@@ -82,5 +83,24 @@ internal class F01Github
         }
 
 #pragma warning restore SKEXP0001 // 类型仅用于评估，在将来的更新中可能会被更改或删除。取消此诊断以继续。
+    }
+
+    public static async Task MapMcpFunctionAsync(Kernel kernel)
+    {
+        var githubClient = await GetMcpClientAsync();
+        var functions = await githubClient.MapToFunctionsAsync();
+
+        kernel.Plugins.Clear();
+        kernel.Plugins.AddFromFunctions("Github", functions);
+
+        var executionSettings = new OpenAIPromptExecutionSettings
+        {
+            Temperature = 0,
+            FunctionChoiceBehavior = FunctionChoiceBehavior.Auto()
+        };
+
+        var prompt = "列出github仓库[ShaoHans/Abp.RadzenUI]最近4个提交信息";
+        var result = await kernel.InvokePromptAsync(prompt, new(executionSettings)).ConfigureAwait(false);
+        System.Console.WriteLine($"\n\n{prompt}\n{result}");
     }
 }
